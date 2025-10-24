@@ -12,9 +12,9 @@ public class SpriteLoader {
     private static final HashMap<String, BufferedImage> SPRITE_CACHE = new HashMap<>();
 
     public static void init(){
-        playerSprite = loadSprite(UtilConstants.PLAYER_SPRITE);
+        playerSprite = loadSprite(CommonConstants.PLAYER_SPRITE);
 
-        SPRITE_CACHE.put(UtilConstants.PLAYER_SPRITE,playerSprite);
+        SPRITE_CACHE.put(CommonConstants.PLAYER_SPRITE,playerSprite);
     }
 
 

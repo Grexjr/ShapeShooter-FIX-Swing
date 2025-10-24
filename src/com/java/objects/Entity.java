@@ -9,12 +9,12 @@ public class Entity extends JComponent {
     private final int id;
     private final BufferedImage sprite;
     private final String name;
-    private final float scale;
+    private final double scale;
 
     private int maxHealth,health;
     //private Vector<Integer> velocity;
 
-    public Entity(int id, BufferedImage sprite, String name, float scale, int maxHealth){
+    public Entity(int id, BufferedImage sprite, String name, double scale, int maxHealth){
         // Initialize all variables
         this.id = id;
         this.sprite = sprite;
@@ -41,7 +41,7 @@ public class Entity extends JComponent {
         return name;
     }
 
-    public float getScale() {
+    public double getScale() {
         return scale;
     }
 

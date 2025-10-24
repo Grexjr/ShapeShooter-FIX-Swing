@@ -1,6 +1,7 @@
 package com.java.gui;
 
 import com.java.game.GUIManager;
+import com.java.objects.Entity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class GameScreen extends JPanel {
         super(null);
         // Reference to gui manager object
         this.manager = manager;
-        // Initialize action and input map
+        // Initialize action and input maps
 
     }
 
@@ -25,9 +26,27 @@ public class GameScreen extends JPanel {
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
 
-        // Get one scaling factor that comes from the smaller of the width or the height to keep the aspect ratio
-        scale = Math.min(manager.getContent().getWidth(),manager.getContent().getHeight());
+        calculateScale();
 
+        // Repaint the player ever frame
+        g2.drawImage(
+                manager.getGame().getPlayer().getSprite(),
+                manager.getGame().getPlayer().getX(),
+                manager.getGame().getPlayer().getY(),
+                calculateObjectSize(manager.getGame().getPlayer()),
+                calculateObjectSize(manager.getGame().getPlayer()),
+                null
+        );
+
+    }
+
+    private void calculateScale(){
+        // Get one scaling factor that comes from the smaller of the width or the height to keep the aspect ratio
+        scale = Math.min(getWidth(),getHeight());
+    }
+
+    private int calculateObjectSize(Entity object){
+        return Math.toIntExact(Math.round(object.getScale() * scale));
     }
 
 
