@@ -14,14 +14,12 @@ public class ShapeShooter {
     // GUI Objects
     private final GUIManager guiManager;
 
-
-
     public ShapeShooter(){
         // Initialize the utilities
         SpriteLoader.init();
 
         // Initialize the mini-controllers
-        objectManager = new ObjectManager();
+        objectManager = new ObjectManager(this);
         guiManager = new GUIManager(this);
 
 
@@ -30,6 +28,7 @@ public class ShapeShooter {
     }
 
     public ObjectManager getObjectManager(){return objectManager;}
+    public GUIManager getGuiManager(){return guiManager;}
 
     /// Runs on start up of the game to initialize things like the first screen, etc.
     public void initializeGame(){

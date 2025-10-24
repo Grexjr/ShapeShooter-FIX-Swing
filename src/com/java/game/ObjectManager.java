@@ -1,18 +1,15 @@
 package com.java.game;
 
-import com.java.objects.Player;
-
 public class ObjectManager {
 
-    private Player player;
+    private final ShapeShooter game;
 
-    public ObjectManager(){
+    public ObjectManager(ShapeShooter game){
+        // Game reference
+        this.game = game;
         // Create new player
-        player = new Player(0);
     }
 
-    // Okay to be hard-coded since there will always be a player
-    public Player getPlayer(){return player;}
 
 
 
