@@ -1,5 +1,6 @@
 package com.java.gui;
 
+import com.java.game.GUIManager;
 import com.java.game.ShapeShooter;
 import com.java.objects.Entity;
 
@@ -8,16 +9,15 @@ import java.awt.*;
 
 public class GameScreen extends JPanel {
 
-    private ShapeShooter shapeShoot;
-    private Polygon poly;
+    private GUIManager manager;
 
     private float scale;
 
-    public GameScreen(ShapeShooter game){
+    public GameScreen(GUIManager manager){
         // Set layout to null for exact positioning of entities on the screen
         super(null);
-        // Reference to game object
-        shapeShoot = game;
+        // Reference to gui manager object
+        this.manager = manager;
     }
 
     @Override
@@ -25,15 +25,15 @@ public class GameScreen extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
 
         // Get one scaling factor that comes from the smaller of the width or the height to keep the aspect ratio
-        scale = Math.min(shapeShoot.getContent().getWidth(),shapeShoot.getContent().getHeight());
+        scale = Math.min(manager.getContent().getWidth(),manager.getContent().getHeight());
 
         // Draw the player
         g2.drawImage(
-                shapeShoot.getObjectManager().getPlayer().getSprite(),
-                shapeShoot.getContent().getWidth()/2,
-                shapeShoot.getContent().getHeight()/2,
-                calculateScale(shapeShoot.getObjectManager().getPlayer()),
-                calculateScale(shapeShoot.getObjectManager().getPlayer()),
+                manager.getGame().getObjectManager().getPlayer().getSprite(),
+                manager.getContent().getWidth()/2,
+                manager.getContent().getHeight()/2,
+                calculateScale(manager.getGame().getObjectManager().getPlayer()),
+                calculateScale(manager.getGame().getObjectManager().getPlayer()),
                 null
                 );
 

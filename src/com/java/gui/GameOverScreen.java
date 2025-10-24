@@ -1,5 +1,6 @@
 package com.java.gui;
 
+import com.java.game.GUIManager;
 import com.java.game.ShapeShooter;
 
 import javax.swing.*;
@@ -9,11 +10,11 @@ import java.awt.event.ActionListener;
 
 public class GameOverScreen extends JPanel {
 
-    private final ShapeShooter shapeShoot;
+    private final GUIManager manager;
 
-    public GameOverScreen(ShapeShooter game){
+    public GameOverScreen(GUIManager manager){
         // Give the screen reference to the game
-        shapeShoot = game;
+        this.manager = manager;
 
         // Set layout for the screen
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -55,7 +56,7 @@ public class GameOverScreen extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //DEBUG
                 System.out.println(this.getClass().getName() + "=pressed;");
-                shapeShoot.restartGame();
+                manager.getGame().restartGame();
             }
         };
     }

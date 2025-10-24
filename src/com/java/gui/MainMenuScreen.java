@@ -1,5 +1,6 @@
 package com.java.gui;
 
+import com.java.game.GUIManager;
 import com.java.game.ShapeShooter;
 
 import javax.swing.*;
@@ -10,11 +11,11 @@ import java.awt.event.ActionListener;
 
 public class MainMenuScreen extends JPanel {
 
-    private ShapeShooter shapeShoot;
+    private GUIManager manager;
 
-    public MainMenuScreen(ShapeShooter game){
+    public MainMenuScreen(GUIManager manager){
         // Reference to the game object to call upon start methods etc
-        shapeShoot = game;
+        this.manager = manager;
 
         // Set the layout of this panel; box panel for vertical stacking of components
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -122,7 +123,7 @@ public class MainMenuScreen extends JPanel {
                 //DEBUG | TODO: May be better with a custom button class, but that's okay; would be overkill for now
                 System.out.println(this.getClass().getName() + "=pressed;");
                 // Start the game
-                shapeShoot.startGame();
+                manager.getGame().startGame(); // TODO: Make this less coupled -- make it just do a runnable
             }
         };
     }
@@ -134,7 +135,7 @@ public class MainMenuScreen extends JPanel {
                 //DEBUG
                 System.out.println(this.getClass().getName() + "=pressed");
                 // Show the instructions panel
-                shapeShoot.showInstructions();
+                manager.showInstructions();
             }
         };
     }
@@ -146,7 +147,7 @@ public class MainMenuScreen extends JPanel {
                 //DEBUG
                 System.out.println(this.getClass().getName() + "=pressed");
                 // Show the settings screen
-                shapeShoot.goToSettings();
+                manager.goToSettings();
             }
         };
     }
