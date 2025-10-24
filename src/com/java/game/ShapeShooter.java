@@ -14,8 +14,6 @@ public class ShapeShooter {
     // GUI Objects
     private final GUIManager guiManager;
 
-
-
     public ShapeShooter(){
         // Initialize the utilities
         SpriteLoader.init();
