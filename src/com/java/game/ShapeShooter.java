@@ -31,8 +31,6 @@ public class ShapeShooter {
 
     public ObjectManager getObjectManager(){return objectManager;}
 
-    // TODO: Create smaller controller classes; score manager, screen manager
-
     /// Runs on start up of the game to initialize things like the first screen, etc.
     public void initializeGame(){
         guiManager.initializeGUI();
