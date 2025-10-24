@@ -1,5 +1,6 @@
 package com.java.gui;
 
+import com.java.game.GUIManager;
 import com.java.game.ShapeShooter;
 
 import javax.swing.*;
@@ -10,12 +11,12 @@ import java.time.Year;
 
 public class SettingsPanel extends JPanel {
 
-    private ShapeShooter shapeShoot;
+    private GUIManager manager;
 
-    public SettingsPanel(ShapeShooter game){
+    public SettingsPanel(GUIManager manager){
         // TODO: Figure out what settings to even add
         // Add the game reference
-        shapeShoot = game;
+        this.manager = manager;
 
         // Set the layout (border layout for now to stack settings things on top of each other)
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -48,7 +49,7 @@ public class SettingsPanel extends JPanel {
                 //DEBUG
                 System.out.println(this.getClass().getName() + "=pressed;");
                 // Call on game to hide the settings screen
-                shapeShoot.hideSettings();
+                manager.hideSettings();
             }
         };
     }

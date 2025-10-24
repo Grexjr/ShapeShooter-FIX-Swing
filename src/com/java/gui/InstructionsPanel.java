@@ -1,5 +1,6 @@
 package com.java.gui;
 
+import com.java.game.GUIManager;
 import com.java.game.ShapeShooter;
 
 import javax.swing.*;
@@ -9,11 +10,11 @@ import java.awt.event.ActionListener;
 
 public class InstructionsPanel extends JPanel {
 
-    private final ShapeShooter shapeShoot;
+    private final GUIManager manager;
 
-    public InstructionsPanel(ShapeShooter game){
+    public InstructionsPanel(GUIManager manager){
         // Reference to game for sizing
-        shapeShoot = game;
+        this.manager = manager;
 
         // Set the layout to box layout to layer text area above back button
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -68,7 +69,7 @@ public class InstructionsPanel extends JPanel {
                     //DEBUG
                 System.out.println(this.getClass().getName() + "=pressed;");
                     // call game to do hide instructions
-                shapeShoot.hideInstructions();
+                manager.hideInstructions();
             }
         };
     }
