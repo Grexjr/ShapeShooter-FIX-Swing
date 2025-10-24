@@ -1,8 +1,9 @@
 package com.java.objects;
 
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 
-public class Entity {
+public class Entity extends JComponent {
 
     private final int id,pointsValue,hp;
     private final BufferedImage sprite;

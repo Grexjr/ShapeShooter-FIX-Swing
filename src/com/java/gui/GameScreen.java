@@ -6,6 +6,10 @@ import com.java.objects.Entity;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class GameScreen extends JPanel {
 
@@ -18,6 +22,10 @@ public class GameScreen extends JPanel {
         super(null);
         // Reference to gui manager object
         this.manager = manager;
+        // Initialize action and input map
+        initializeInputs();
+        initializeActions();
+
     }
 
     @Override
@@ -30,13 +38,12 @@ public class GameScreen extends JPanel {
         // Draw the player
         g2.drawImage(
                 manager.getGame().getObjectManager().getPlayer().getSprite(),
-                manager.getContent().getWidth()/2,
-                manager.getContent().getHeight()/2,
+                manager.getGame().getObjectManager().getPlayer().getX(),
+                manager.getGame().getObjectManager().getPlayer().getY(),
                 calculateScale(manager.getGame().getObjectManager().getPlayer()),
                 calculateScale(manager.getGame().getObjectManager().getPlayer()),
                 null
                 );
-
     }
 
     /**
@@ -44,13 +51,38 @@ public class GameScreen extends JPanel {
      * @param drawable the entity to be drawn
      * @return the actual size (width and height)
      */
-    private int calculateScale(Entity drawable){
+    public int calculateScale(Entity drawable){
         return Math.toIntExact(Math.round(drawable.getScale() * scale));
     }
 
+    private void initializeInputs(){
+        KeyStroke w = KeyStroke.getKeyStroke("W");
+        KeyStroke a = KeyStroke.getKeyStroke("A");
+        KeyStroke s = KeyStroke.getKeyStroke("S");
+        KeyStroke d = KeyStroke.getKeyStroke("D");
 
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(w,GUIConstants.MOVE_UP);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(a,GUIConstants.MOVE_LEFT);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(s,GUIConstants.MOVE_RIGHT);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(d,GUIConstants.MOVE_DOWN);
+    }
 
+    private void initializeActions(){
+        getActionMap().put(GUIConstants.MOVE_UP,moveUp());
+    }
 
+    private AbstractAction moveUp(){
+        return new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //DEBUG
+                System.out.println("Player moved");
+                System.out.println(manager.getGame().getObjectManager().getPlayer().getYPos());
+                System.out.println(manager.getGame().getObjectManager().getPlayer().getY());
+                manager.getGame().getObjectManager().movePlayerUp();
+            }
+        };
+    }
 
 
 
