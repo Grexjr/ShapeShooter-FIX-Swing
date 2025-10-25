@@ -19,16 +19,17 @@ public class GameScreen extends JPanel {
         // Reference to gui manager object
         this.manager = manager;
         // Initialize action and input maps
-
+        defineInputs();
     }
 
+    // RUNS EVERY TIME THE WINDOW IS RESIZED OR MANUALLY CALLED!!!
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
 
         calculateScale();
 
-        // Repaint the player ever frame
+        // Repaint the player every run through of painting
         g2.drawImage(
                 manager.getGame().getPlayer().getSprite(),
                 manager.rescaleObjectXPositions(manager.getGame().getPlayer()),
@@ -38,15 +39,23 @@ public class GameScreen extends JPanel {
                 null
         );
 
-        System.out.println(getWidth());
-        System.out.println(manager.getGame().getPlayer().getPositionScaleX());
-        System.out.println(manager.getGame().getPlayer().getX());
-        System.out.println(manager.getGame().getPlayer().getPositionScaleX() * getWidth());
-
         // Set the player bounds every frame
 
         //TODO: Make the player stay in the same position when resizing, likely with a scale x and scale y for position
 
+    }
+
+    private void defineInputs(){
+        InputMap im = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap am = getActionMap();
+        KeyStroke key = KeyStroke.getKeyStroke("SPACE");
+        im.put(key,"move");
+        am.put("move", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                manager.getGame().getObjectManager().translatePlayer(manager.getGameScreen());
+            }
+        });
     }
 
     private void calculateScale(){

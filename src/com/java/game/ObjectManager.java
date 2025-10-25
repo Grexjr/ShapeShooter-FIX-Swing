@@ -34,19 +34,27 @@ public class ObjectManager {
         );
     }
 
+    public void translatePlayer(Container screen){
+        player.setBounds(
+                player.getX() + (10 *screen.getWidth()),
+                player.getY() + (10 *screen.getHeight()),
+                player.getWidth(),
+                player.getHeight()
+        );
+
+        calculatePositionRatio(player,screen);
+    }
+
+    ///  To be called every time a sprite moves
     protected void calculatePositionRatio(Entity object, Container screen){
         // gets the ratio position from the center of the object
-        double ratioX = (double)(screen.getWidth() - (object.getX() + object.getWidth())) / screen.getWidth();
+        double ratioX = (double)(screen.getWidth() - object.getX()) / screen.getWidth();
         // gets the ratio position from the center of the object
-        double ratioY = (double)(screen.getHeight() - (object.getY() + object.getHeight())) / screen.getHeight();
+        double ratioY = (double)(screen.getHeight() - object.getY()) / screen.getHeight();
         //DEBUG
         System.out.println("Ratios (x y): " + ratioX + " " + ratioY);
-        if(ratioX != object.getPositionScaleX()){
-            object.setPositionScaleX(ratioX);
-        }
-        if(ratioY != object.getPositionScaleY()){
-            object.setPositionScaleY(ratioY);
-        }
+        object.setPositionScaleX(ratioX);
+        object.setPositionScaleY(ratioY);
     }
 
     protected void initializePlayer(){
