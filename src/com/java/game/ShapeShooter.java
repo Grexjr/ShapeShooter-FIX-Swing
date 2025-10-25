@@ -1,6 +1,7 @@
 package com.java.game;
 
 import com.java.gui.*;
+import com.java.objects.Player;
 import com.java.util.SpriteLoader;
 
 import javax.swing.*;
@@ -28,6 +29,8 @@ public class ShapeShooter {
     }
 
     public ObjectManager getObjectManager(){return objectManager;}
+    public Player getPlayer(){return objectManager.getPlayer();}
+
     public GUIManager getGuiManager(){return guiManager;}
 
     /// Runs on start up of the game to initialize things like the first screen, etc.
@@ -40,10 +43,17 @@ public class ShapeShooter {
         //DEBUG
         System.out.println(this.getClass().getSimpleName() + "=started;");
         // Set the game screen to be the one shown
-        guiManager.changeScreen(guiManager.getGameScreen());
+        guiManager.initializeGameScreen();
+        objectManager.loadGameObjects(guiManager.getGameScreen());
         //DEBUG
         System.out.println(guiManager.getGameScreen().getClass().getSimpleName() + "=added;");
     }
+
+    /// Play game method
+    public void playGame(){
+
+    }
+
 
     /// Restarts the game from the game over screen
     public void restartGame(){

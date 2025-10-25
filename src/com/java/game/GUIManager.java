@@ -1,6 +1,7 @@
 package com.java.game;
 
 import com.java.gui.*;
+import com.java.objects.Entity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,28 +35,12 @@ public class GUIManager {
         return game;
     }
 
-    public GameFrame getFrame() {
-        return frame;
-    }
-
-    public MainMenuScreen getMainMenu() {
-        return mainMenu;
-    }
-
-    public InstructionsPanel getInstructionsPanel() {
-        return instructionsPanel;
-    }
-
     public GameScreen getGameScreen() {
         return gameScreen;
     }
 
     public GameOverScreen getGameOverScreen() {
         return gameOverScreen;
-    }
-
-    public SettingsPanel getSettings() {
-        return settings;
     }
 
     /// Sets the frame to be visible
@@ -91,6 +76,27 @@ public class GUIManager {
         System.out.println(settings.getClass().getSimpleName() + "=hidden;");
         // Change screen back
         changeScreen(mainMenu);
+    }
+
+    public int rescaleObjectXPositions(Entity object){
+        return Math.toIntExact(Math.round(object.getPositionScaleX() * getContent().getWidth()));
+    }
+
+    public int rescaleObjectYPositions(Entity object){
+        return Math.toIntExact(Math.round(object.getPositionScaleY() * getContent().getHeight()));
+    }
+
+    public void initializeGameScreen(){
+        // Change to the game screen
+        changeScreen(gameScreen);
+        // Initialize all game objects on to the screen
+        game.getObjectManager().initializePlayer();
+    }
+
+    public void resizeScreen(Container screen){
+        // would need a list of all entities on the screen... just use object manager list for now
+        game.getObjectManager().calculatePositionRatio(game.getObjectManager().getPlayer(),screen);
+        // enemies list as well
     }
 
     protected void changeScreen(JPanel newScreen){
