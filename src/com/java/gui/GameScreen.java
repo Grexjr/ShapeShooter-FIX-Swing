@@ -31,12 +31,21 @@ public class GameScreen extends JPanel {
         // Repaint the player ever frame
         g2.drawImage(
                 manager.getGame().getPlayer().getSprite(),
-                manager.getGame().getPlayer().getX(),
-                manager.getGame().getPlayer().getY(),
+                manager.rescaleObjectXPositions(manager.getGame().getPlayer()),
+                manager.rescaleObjectYPositions(manager.getGame().getPlayer()),
                 calculateObjectSize(manager.getGame().getPlayer()),
                 calculateObjectSize(manager.getGame().getPlayer()),
                 null
         );
+
+        System.out.println(getWidth());
+        System.out.println(manager.getGame().getPlayer().getPositionScaleX());
+        System.out.println(manager.getGame().getPlayer().getX());
+        System.out.println(manager.getGame().getPlayer().getPositionScaleX() * getWidth());
+
+        // Set the player bounds every frame
+
+        //TODO: Make the player stay in the same position when resizing, likely with a scale x and scale y for position
 
     }
 

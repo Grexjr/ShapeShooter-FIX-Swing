@@ -43,7 +43,7 @@ public class ShapeShooter {
         //DEBUG
         System.out.println(this.getClass().getSimpleName() + "=started;");
         // Set the game screen to be the one shown
-        guiManager.changeScreen(guiManager.getGameScreen());
+        guiManager.initializeGameScreen();
         objectManager.loadGameObjects(guiManager.getGameScreen());
         //DEBUG
         System.out.println(guiManager.getGameScreen().getClass().getSimpleName() + "=added;");

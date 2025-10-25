@@ -1,6 +1,7 @@
 package com.java.game;
 
 import com.java.gui.*;
+import com.java.objects.Entity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,6 +92,22 @@ public class GUIManager {
         System.out.println(settings.getClass().getSimpleName() + "=hidden;");
         // Change screen back
         changeScreen(mainMenu);
+    }
+
+    public int rescaleObjectXPositions(Entity object){
+        return Math.toIntExact(Math.round(object.getPositionScaleX() * getContent().getWidth()));
+    }
+
+    public int rescaleObjectYPositions(Entity object){
+        return Math.toIntExact(Math.round(object.getPositionScaleY() * getContent().getHeight()));
+    }
+
+    public void initializeGameScreen(){
+        // Change to the game screen
+        changeScreen(gameScreen);
+        // Initialize all game objects on to the screen
+        game.getObjectManager().initializePlayer();
+        gameScreen.add(game.getObjectManager().getPlayer());
     }
 
     protected void changeScreen(JPanel newScreen){

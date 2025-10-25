@@ -12,6 +12,7 @@ public class Entity extends JComponent {
     private final double scale;
 
     private int maxHealth,health;
+    private double positionScaleX,positionScaleY;
     //private Vector<Integer> velocity;
 
     public Entity(int id, BufferedImage sprite, String name, double scale, int maxHealth){
@@ -51,5 +52,21 @@ public class Entity extends JComponent {
 
     public int getHealth() {
         return health;
+    }
+
+    public double getPositionScaleX(){
+        return positionScaleX;
+    }
+
+    public double getPositionScaleY(){
+        return positionScaleY;
+    }
+
+    public void setPositionScaleX(double newScale){
+        positionScaleX = newScale;
+    }
+
+    public void setPositionScaleY(double newScale){
+        positionScaleY = newScale;
     }
 }

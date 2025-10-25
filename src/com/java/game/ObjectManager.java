@@ -5,6 +5,7 @@ import com.java.objects.Entity;
 import com.java.objects.Player;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ObjectManager {
 
@@ -31,6 +32,27 @@ public class ObjectManager {
                 player.getWidth(),
                 player.getHeight()
         );
+    }
+
+    protected void calculatePositionRatio(Entity object, Container screen){
+        // gets the ratio position from the center of the object
+        double ratioX = (double)(screen.getWidth() - (object.getX() + object.getWidth())) / screen.getWidth();
+        // gets the ratio position from the center of the object
+        double ratioY = (double)(screen.getHeight() - (object.getY() + object.getHeight())) / screen.getHeight();
+        //DEBUG
+        System.out.println("Ratios (x y): " + ratioX + " " + ratioY);
+        if(ratioX != object.getPositionScaleX()){
+            object.setPositionScaleX(ratioX);
+        }
+        if(ratioY != object.getPositionScaleY()){
+            object.setPositionScaleY(ratioY);
+        }
+    }
+
+    protected void initializePlayer(){
+        // Set player's position to middle of screen
+        player.setPositionScaleX(0.5);
+        player.setPositionScaleY(0.5);
     }
 
 
