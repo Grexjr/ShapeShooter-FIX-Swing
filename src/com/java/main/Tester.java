@@ -11,9 +11,9 @@ public class Tester {
 
 
 
-
     public static void main(String[] args){
-        new ShapeShooter().initializeGame();
+        ShapeShooter shooter = new ShapeShooter();
+        shooter.initializeGame();
     }
 
 
