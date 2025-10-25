@@ -11,7 +11,6 @@ public class Tester {
 
 
 
-
     public static void main(String[] args){
         ShapeShooter shooter = new ShapeShooter();
         shooter.initializeGame();

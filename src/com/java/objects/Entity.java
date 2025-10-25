@@ -1,41 +1,39 @@
 package com.java.objects;
 
+import com.java.objects.components.Position;
+import com.java.objects.components.Velocity;
+
 import javax.swing.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.Vector;
 
 public class Entity extends JComponent {
 
-    private final int id;
     private final BufferedImage sprite;
     private final String name;
     private final double scale;
 
-    private int maxHealth,health;
-    private double positionScaleX,positionScaleY;
-    //private Vector<Integer> velocity;
+    private int maxHealth,health,absX,absY;
+    private Position position;
+    private Velocity velocity;
+    private Rectangle2D rectangle;
 
-    public Entity(int id, BufferedImage sprite, String name, double scale, int maxHealth){
-        // Initialize all variables
-        this.id = id;
+    public Entity(BufferedImage sprite, String name, double scale, int maxHealth){
         this.sprite = sprite;
         this.name = name;
         this.scale = scale;
         this.maxHealth = maxHealth;
         this.health = maxHealth;
-
-        // Set minimum size
-        setMinimumSize(ObjectConstants.OBJECT_MINIMUM_SIZE);
-        // Set the bounds to be the minimum size by default
-        setBounds(0,0,ObjectConstants.OBJECT_MINIMUM_SIZE.width,ObjectConstants.OBJECT_MINIMUM_SIZE.height);
-    }
-
-    public int getId() {
-        return id;
+        this.position = new Position(0,0);
+        this.velocity = new Velocity(0,0);
     }
 
     public BufferedImage getSprite() {
         return sprite;
+    }
+
+    public Rectangle2D getRectangle() {
+        return rectangle;
     }
 
     public String getEntityName() {
@@ -54,19 +52,47 @@ public class Entity extends JComponent {
         return health;
     }
 
-    public double getPositionScaleX(){
-        return positionScaleX;
+    public int getAbsX() {
+        return absX;
     }
 
-    public double getPositionScaleY(){
-        return positionScaleY;
+    public int getAbsY() {
+        return absY;
     }
 
-    public void setPositionScaleX(double newScale){
-        positionScaleX = newScale;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPositionScaleY(double newScale){
-        positionScaleY = newScale;
+    public Velocity getVelocity() {
+        return velocity;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setAbsX(int absX) {
+        this.absX = absX;
+    }
+
+    public void setAbsY(int absY) {
+        this.absY = absY;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public void setVelocity(Velocity velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setRectangle(Rectangle2D rectangle) {
+        this.rectangle = rectangle;
     }
 }

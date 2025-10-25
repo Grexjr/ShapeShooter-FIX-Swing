@@ -9,16 +9,13 @@ public class Player extends Entity{
 
     private static final BufferedImage SPRITE = SpriteLoader.loadSprite(CommonConstants.PLAYER_SPRITE);
 
-    public Player(int id){
+    public Player(){
         super(
-                id,
                 SPRITE,
                 ObjectConstants.PLAYER_NAME,
                 ObjectConstants.OBJECT_SCALE,
-                ObjectConstants.PLAYER_HEALTH
+                ObjectConstants.PLAYER_DEF_HEALTH
         );
     }
-
-
 
 }

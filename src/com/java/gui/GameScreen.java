@@ -1,25 +1,25 @@
 package com.java.gui;
 
 import com.java.game.GUIManager;
-import com.java.objects.Entity;
+import com.java.objects.Player;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.geom.Rectangle2D;
 
 public class GameScreen extends JPanel {
 
     private GUIManager manager;
 
-    private float scale;
+    private final Player player;
 
     public GameScreen(GUIManager manager){
         // Set layout to null for exact positioning of entities on the screen
         super(null);
         // Reference to gui manager object
         this.manager = manager;
-        // Initialize action and input maps
-        defineInputs();
+        this.player = manager.getGame().getObjectManager().getPlayer();
     }
 
     // RUNS EVERY TIME THE WINDOW IS RESIZED OR MANUALLY CALLED!!!
@@ -27,44 +27,25 @@ public class GameScreen extends JPanel {
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
 
-        calculateScale();
+        // Create the player rectangle every frame
+        player.setRectangle(
+                new Rectangle(
+                manager.scalePositionX(player),
+                manager.scalePositionY(player),
+                manager.scaleDimension(player),
+                manager.scaleDimension(player)
+        ));
 
-        // Repaint the player every run through of painting
+        // Draw the player at the same place as their rectangle
         g2.drawImage(
-                manager.getGame().getPlayer().getSprite(),
-                manager.rescaleObjectXPositions(manager.getGame().getPlayer()),
-                manager.rescaleObjectYPositions(manager.getGame().getPlayer()),
-                calculateObjectSize(manager.getGame().getPlayer()),
-                calculateObjectSize(manager.getGame().getPlayer()),
+                player.getSprite(),
+                (int)player.getRectangle().getX(),
+                (int)player.getRectangle().getY(),
+                (int)player.getRectangle().getWidth(),
+                (int)player.getRectangle().getHeight(),
                 null
         );
 
-        // Set the player bounds every frame
-
-        //TODO: Make the player stay in the same position when resizing, likely with a scale x and scale y for position
-
-    }
-
-    private void defineInputs(){
-        InputMap im = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        ActionMap am = getActionMap();
-        KeyStroke key = KeyStroke.getKeyStroke("SPACE");
-        im.put(key,"move");
-        am.put("move", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                manager.getGame().getObjectManager().translatePlayer(manager.getGameScreen());
-            }
-        });
-    }
-
-    private void calculateScale(){
-        // Get one scaling factor that comes from the smaller of the width or the height to keep the aspect ratio
-        scale = Math.min(getWidth(),getHeight());
-    }
-
-    private int calculateObjectSize(Entity object){
-        return Math.toIntExact(Math.round(object.getScale() * scale));
     }
 
 

@@ -43,6 +43,56 @@ public class GUIManager {
         return gameOverScreen;
     }
 
+    ///  Scales position of object from world coordinates to screen coordinates and returns that value: x
+    public int scalePositionX(Entity object){
+        return (int) Math.round(object.getAbsX() * game.calculateScaleRatioX());
+    }
+
+    ///  Scales position of object from world coordinates to screen coordinates and returns that value: y
+    public int scalePositionY(Entity object){
+        return (int) Math.round(object.getAbsY() * game.calculateScaleRatioY());
+    }
+
+    ///  Scales dimensions square-wise (same width and height) based on the smaller dimension of the GUI
+    public int scaleDimension(Entity object){
+        int scalar = Math.min(getContent().getWidth(),getContent().getHeight());
+        return (int) Math.round(object.getScale() * scalar);
+    }
+
+
+
+
+
+
+    public void showGameGUI(){
+        changeScreen(gameScreen);
+        frame.repaint();
+        frame.revalidate();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /// Sets the frame to be visible
     public void showGame(){
         frame.setVisible(true);
@@ -76,27 +126,6 @@ public class GUIManager {
         System.out.println(settings.getClass().getSimpleName() + "=hidden;");
         // Change screen back
         changeScreen(mainMenu);
-    }
-
-    public int rescaleObjectXPositions(Entity object){
-        return Math.toIntExact(Math.round(object.getPositionScaleX() * getContent().getWidth()));
-    }
-
-    public int rescaleObjectYPositions(Entity object){
-        return Math.toIntExact(Math.round(object.getPositionScaleY() * getContent().getHeight()));
-    }
-
-    public void initializeGameScreen(){
-        // Change to the game screen
-        changeScreen(gameScreen);
-        // Initialize all game objects on to the screen
-        game.getObjectManager().initializePlayer();
-    }
-
-    public void resizeScreen(Container screen){
-        // would need a list of all entities on the screen... just use object manager list for now
-        game.getObjectManager().calculatePositionRatio(game.getObjectManager().getPlayer(),screen);
-        // enemies list as well
     }
 
     protected void changeScreen(JPanel newScreen){
