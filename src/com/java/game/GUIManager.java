@@ -59,6 +59,10 @@ public class GUIManager {
         return (int) Math.round(object.getScale() * scalar);
     }
 
+    public void repaintScreen(){
+        getContent().repaint();
+    }
+
 
 
 
@@ -129,8 +133,6 @@ public class GUIManager {
     }
 
     protected void changeScreen(JPanel newScreen){
-        //DEBUG
-        System.out.println("Screen changed!");
         // Set the screen to be the new screen
         frame.setContentPane(newScreen);
         // Repaint the frame to update

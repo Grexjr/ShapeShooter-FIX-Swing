@@ -32,6 +32,31 @@ public class ObjectManager {
         player.setAbsY(450);
     }
 
+    public void translatePlayer(String direction){
+        switch(direction){
+            case "UP" -> {
+                player.setAbsY(player.getAbsY() - GameConstants.MOVEMENT_BASE);
+                //DEBUG need
+                game.getGuiManager().repaintScreen();
+            }
+            case "LEFT" -> {
+                player.setAbsX(player.getAbsX() - GameConstants.MOVEMENT_BASE);
+                //DEBUG need
+                game.getGuiManager().repaintScreen();
+            }
+            case "DOWN" -> {
+                player.setAbsY(player.getAbsY() + GameConstants.MOVEMENT_BASE);
+                //DEBUG need
+                game.getGuiManager().repaintScreen();
+            }
+            case "RIGHT" -> {
+                player.setAbsX(player.getAbsX() + GameConstants.MOVEMENT_BASE);
+                //DEBUG need
+                game.getGuiManager().repaintScreen();
+            }
+        }
+    }
+
 
 
 }

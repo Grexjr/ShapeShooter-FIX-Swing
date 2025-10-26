@@ -38,6 +38,11 @@ public class ShapeShooter {
     }
 
 
+    public void movePlayer(String direction){
+        objectManager.translatePlayer(direction);
+    }
+
+
 
 
 

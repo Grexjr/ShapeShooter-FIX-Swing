@@ -4,6 +4,7 @@ import com.java.objects.components.Position;
 import com.java.objects.components.Velocity;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
@@ -26,6 +27,7 @@ public class Entity extends JComponent {
         this.health = maxHealth;
         this.position = new Position(0,0);
         this.velocity = new Velocity(0,0);
+        this.rectangle = new Rectangle();
     }
 
     public BufferedImage getSprite() {
