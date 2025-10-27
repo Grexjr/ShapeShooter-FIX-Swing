@@ -100,25 +100,11 @@ public class GameScreen extends JPanel {
 
         inputs.put(press,pressMapKey);
         inputs.put(release,releaseMapKey);
-        actions.put(pressMapKey, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currentInput = keyPress;
-                //DEBUG
-                System.out.println(keyPress+"=pressed;");
-                startInputHoldTimer();
-            }
-        });
-        actions.put(releaseMapKey, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //DEBUG
-                System.out.println(keyPress+"=released;");
-                stopInputHoldTimer();
-            }
-        });
+        actions.put(pressMapKey, createPress(keyPress));
+        actions.put(releaseMapKey, createRelease(keyPress));
     }
 
+    //TODO
     private void buildSInput(){
 
     }
@@ -149,6 +135,31 @@ public class GameScreen extends JPanel {
 
     private void buildDownInput(){
 
+    }
+
+    private AbstractAction createPress(int keyPress){
+        return new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Stop the timer so it doesn't override into the restart
+                stopInputHoldTimer();
+                currentInput = keyPress;
+                //DEBUG
+                System.out.println(keyPress+"=pressed;");
+                startInputHoldTimer();
+            }
+        };
+    }
+
+    private AbstractAction createRelease(int keyPress){
+        return new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //DEBUG
+                System.out.println(keyPress+"=released;");
+                stopInputHoldTimer();
+            }
+        };
     }
 
 
