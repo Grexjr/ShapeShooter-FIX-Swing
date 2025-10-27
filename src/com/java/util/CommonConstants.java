@@ -20,6 +20,7 @@ public class CommonConstants {
 
     // Sprites
     public static final String PLAYER_SPRITE = "ShapeShooterPlayer.png";
+    public static final String BULLET_SPRITE = "LaserBullet.png";
 
 
 
