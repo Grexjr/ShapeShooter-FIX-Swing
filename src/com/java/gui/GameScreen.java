@@ -104,39 +104,6 @@ public class GameScreen extends JPanel {
         actions.put(releaseMapKey, createRelease(keyPress));
     }
 
-    //TODO
-    private void buildSInput(){
-
-    }
-
-    private void buildDInput(){
-
-    }
-
-    private void buildQInput(){
-
-    }
-
-    private void buildEInput(){
-
-    }
-
-    private void buildUpInput(){
-
-    }
-
-    private void buildLeftInput(){
-
-    }
-
-    private void buildRightInput(){
-
-    }
-
-    private void buildDownInput(){
-
-    }
-
     private AbstractAction createPress(int keyPress){
         return new AbstractAction() {
             @Override
