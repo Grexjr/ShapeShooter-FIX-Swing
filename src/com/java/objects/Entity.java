@@ -1,8 +1,5 @@
 package com.java.objects;
 
-import com.java.objects.components.Position;
-import com.java.objects.components.Velocity;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -15,8 +12,6 @@ public class Entity extends JComponent {
     private final double scale;
 
     private int maxHealth,health,absX,absY;
-    private Position position;
-    private Velocity velocity;
     private Rectangle2D rectangle;
 
     public Entity(BufferedImage sprite, String name, double scale, int maxHealth){
@@ -25,8 +20,6 @@ public class Entity extends JComponent {
         this.scale = scale;
         this.maxHealth = maxHealth;
         this.health = maxHealth;
-        this.position = new Position(0,0);
-        this.velocity = new Velocity(0,0);
         this.rectangle = new Rectangle();
     }
 
@@ -62,14 +55,6 @@ public class Entity extends JComponent {
         return absY;
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
-    public Velocity getVelocity() {
-        return velocity;
-    }
-
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
     }
@@ -84,14 +69,6 @@ public class Entity extends JComponent {
 
     public void setAbsY(int absY) {
         this.absY = absY;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public void setVelocity(Velocity velocity) {
-        this.velocity = velocity;
     }
 
     public void setRectangle(Rectangle2D rectangle) {
