@@ -97,4 +97,6 @@ public class Entity extends JComponent {
     public void setRectangle(Rectangle2D rectangle) {
         this.rectangle = rectangle;
     }
+
+
 }
