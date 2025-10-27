@@ -1,6 +1,7 @@
 package com.java.game;
 
 import com.java.gui.*;
+import com.java.objects.Entity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,18 +35,6 @@ public class GUIManager {
         return game;
     }
 
-    public GameFrame getFrame() {
-        return frame;
-    }
-
-    public MainMenuScreen getMainMenu() {
-        return mainMenu;
-    }
-
-    public InstructionsPanel getInstructionsPanel() {
-        return instructionsPanel;
-    }
-
     public GameScreen getGameScreen() {
         return gameScreen;
     }
@@ -54,9 +43,59 @@ public class GUIManager {
         return gameOverScreen;
     }
 
-    public SettingsPanel getSettings() {
-        return settings;
+    ///  Scales position of object from world coordinates to screen coordinates and returns that value: x
+    public int scalePositionX(Entity object){
+        return (int) Math.round(object.getAbsX() * game.calculateScaleRatioX());
     }
+
+    ///  Scales position of object from world coordinates to screen coordinates and returns that value: y
+    public int scalePositionY(Entity object){
+        return (int) Math.round(object.getAbsY() * game.calculateScaleRatioY());
+    }
+
+    ///  Scales dimensions square-wise (same width and height) based on the smaller dimension of the GUI
+    public int scaleDimension(Entity object){
+        int scalar = Math.min(getContent().getWidth(),getContent().getHeight());
+        return (int) Math.round(object.getScale() * scalar);
+    }
+
+    public void repaintScreen(){
+        getContent().repaint();
+    }
+
+
+
+
+
+
+    public void showGameGUI(){
+        changeScreen(gameScreen);
+        frame.repaint();
+        frame.revalidate();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /// Sets the frame to be visible
     public void showGame(){
@@ -94,8 +133,6 @@ public class GUIManager {
     }
 
     protected void changeScreen(JPanel newScreen){
-        //DEBUG
-        System.out.println("Screen changed!");
         // Set the screen to be the new screen
         frame.setContentPane(newScreen);
         // Repaint the frame to update

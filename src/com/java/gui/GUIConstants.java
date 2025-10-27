@@ -42,10 +42,4 @@ public class GUIConstants {
     protected static final Color GAME_OVER_TRANSLUCENCE = new Color(10,10,10,20);
     protected static final String RESTART_BUTTON_STRING = "RESTART";
 
-    // Game Screen Variables
-    protected static final String MOVE_UP = "moveUp";
-    protected static final String MOVE_LEFT = "moveLeft";
-    protected static final String MOVE_RIGHT = "moveRight";
-    protected static final String MOVE_DOWN = "moveDown";
-
 }
