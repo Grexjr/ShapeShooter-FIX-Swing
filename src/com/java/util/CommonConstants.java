@@ -10,8 +10,6 @@ public class CommonConstants {
             KeyEvent.VK_A,
             KeyEvent.VK_S,
             KeyEvent.VK_D,
-            KeyEvent.VK_Q,
-            KeyEvent.VK_E,
             KeyEvent.VK_UP,
             KeyEvent.VK_DOWN,
             KeyEvent.VK_LEFT,
@@ -20,6 +18,7 @@ public class CommonConstants {
 
     // Sprites
     public static final String PLAYER_SPRITE = "ShapeShooterPlayer.png";
+    public static final String BULLET_SPRITE = "LaserBullet.png";
 
 
 

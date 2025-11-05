@@ -42,6 +42,8 @@ public class ShapeShooter {
         objectManager.translatePlayer(direction);
     }
 
+    public void shootBullet(String direction){}
+
 
 
 
