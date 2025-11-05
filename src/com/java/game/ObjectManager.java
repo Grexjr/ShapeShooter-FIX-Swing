@@ -1,5 +1,6 @@
 package com.java.game;
 
+import com.java.objects.Bullet;
 import com.java.objects.GameWorld;
 import com.java.objects.Player;
 
@@ -51,6 +52,34 @@ public class ObjectManager {
             }
             case "RIGHT" -> {
                 player.setAbsX(player.getAbsX() + GameConstants.MOVEMENT_BASE);
+                //DEBUG need
+                game.getGuiManager().repaintScreen();
+            }
+        }
+    }
+
+    public void shootBullet(String direction){
+        Bullet bullet = new Bullet();
+        bullet.setAbsX(player.getAbsX());
+        bullet.setAbsY(player.getAbsY());
+        switch(direction){
+            case "UP" -> {
+                bullet.setAbsX(bullet.getAbsY() - GameConstants.MOVEMENT_BASE);
+                //DEBUG need
+                game.getGuiManager().repaintScreen();
+            }
+            case "LEFT" -> {
+                bullet.setAbsX(bullet.getAbsX() - GameConstants.MOVEMENT_BASE);
+                //DEBUG need
+                game.getGuiManager().repaintScreen();
+            }
+            case "DOWN" -> {
+                bullet.setAbsX(bullet.getAbsY() + GameConstants.MOVEMENT_BASE);
+                //DEBUG need
+                game.getGuiManager().repaintScreen();
+            }
+            case "RIGHT" -> {
+                bullet.setAbsX(bullet.getAbsX() + GameConstants.MOVEMENT_BASE);
                 //DEBUG need
                 game.getGuiManager().repaintScreen();
             }

@@ -77,10 +77,28 @@ public class GameScreen extends JPanel {
 
     private void runInput(){
         switch(currentInput){
+            //TODO: a paint method in gui manager that paints a specific screen
+            //TODO: methods in gui manager that moves player
             case (int) (KeyEvent.VK_W) -> manager.getGame().movePlayer("UP");
             case (int) (KeyEvent.VK_A) -> manager.getGame().movePlayer("LEFT");
             case (int) (KeyEvent.VK_S) -> manager.getGame().movePlayer("DOWN");
             case (int) (KeyEvent.VK_D) -> manager.getGame().movePlayer("RIGHT");
+
+            case (int) (KeyEvent.VK_UP) -> {
+                //TODO: Will need to start a timer for bullet movement. Repaint in that
+                //TODO: Will need to add the bullet to bullets list somewhere and access that bullets list.
+                //TODO: Add in the repaint method to draw all the bullets in the list. Don't worry about memory rn.
+                //TODO: Should have a central timer rather than individual ones...
+            }
+            case (int) (KeyEvent.VK_LEFT) -> {
+
+            }
+            case (int) (KeyEvent.VK_DOWN) -> {
+
+            }
+            case (int) (KeyEvent.VK_RIGHT) -> {
+
+            }
             default -> {}
         }
     }
