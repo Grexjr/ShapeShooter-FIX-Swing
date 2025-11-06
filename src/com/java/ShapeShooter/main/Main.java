@@ -1,11 +1,16 @@
 package com.java.ShapeShooter.main;
 
 import com.java.ShapeShooter.view.GameFrame;
+import com.java.ShapeShooter.view.MenuScreen;
+
+import java.awt.*;
 
 public class Main {
 
     public static void main(String[] args){
-        new GameFrame().init();
+        GameFrame g = new GameFrame();
+        g.init();
+        g.swapScreen(new MenuScreen());
     }
 
 }
