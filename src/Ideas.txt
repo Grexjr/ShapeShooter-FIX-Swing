@@ -1,0 +1,5 @@
+IDEAS:
+
+1. A tree system for the GUI... maybe
+2. Component Builder - DONE!
+3. Entity Component System... maybe

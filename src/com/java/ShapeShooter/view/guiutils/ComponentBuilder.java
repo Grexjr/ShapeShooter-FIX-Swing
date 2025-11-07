@@ -3,6 +3,7 @@ package com.java.ShapeShooter.view.guiutils;
 import com.java.ShapeShooter.constants.GUIConstants;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -11,8 +12,6 @@ import java.util.function.Consumer;
 public class ComponentBuilder<T extends JComponent> {
 
     private final T component;
-
-    //TODO: BORDER!!! -- find out how to do this because it's like building in a builder...
 
     public ComponentBuilder(T component){
         this.component = component;
@@ -78,6 +77,11 @@ public class ComponentBuilder<T extends JComponent> {
 
     public ComponentBuilder<T> setFont(Font font){
         component.setFont(font);
+        return this;
+    }
+
+    public ComponentBuilder<T> setBorder(Border border){
+        component.setBorder(border);
         return this;
     }
 

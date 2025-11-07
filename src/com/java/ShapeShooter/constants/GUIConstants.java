@@ -1,5 +1,8 @@
 package com.java.ShapeShooter.constants;
 
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -28,6 +31,13 @@ public class GUIConstants {
 
     // Menu Screen Constants
     public static final String START_STRING = "START";
+    public static final String SETTINGS_STRING = "SETTINGS";
+    public static final String CREDITS_STRING = "CREDITS";
+    public static final String COPYRIGHT_STRING = "\u00a9 2025 GrexGameStudios";
+    public static final Border M_BUTTON_BORDER = new BevelBorder(0,Color.BLACK,Color.GRAY);
+    public static final Font MAIN_TITLE_FONT = new Font("Courier New",Font.BOLD,75);
+    public static final Font MAIN_MENU_FONT = new Font("Courier New",Font.BOLD,40);
+    public static final Font COPYRIGHT_FONT = new Font("Courier New",Font.BOLD,18);
 
 
 

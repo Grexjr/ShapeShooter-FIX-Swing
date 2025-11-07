@@ -12,6 +12,7 @@ public class GameFrame extends JFrame {
         setMinimumSize(GUIConstants.SCREEN_MINIMUM);
         setPreferredSize(GUIConstants.SCREEN_MINIMUM);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         //setIconImage();
     }
 
