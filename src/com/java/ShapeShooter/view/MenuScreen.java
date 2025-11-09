@@ -1,6 +1,9 @@
 package com.java.ShapeShooter.view;
 
 import com.java.ShapeShooter.constants.GUIConstants;
+import com.java.ShapeShooter.constants.GameConstants;
+import com.java.ShapeShooter.controller.ScreenController;
+import com.java.ShapeShooter.controller.ShapeShooter;
 import com.java.ShapeShooter.view.abstracta.AbstractScreen;
 import com.java.ShapeShooter.view.abstracta.ButtonHolder;
 import com.java.ShapeShooter.view.guiutils.ComponentBuilder;
@@ -9,26 +12,42 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 public class MenuScreen extends AbstractScreen implements ButtonHolder {
 
+    private final ScreenController manager;
     private final ActionListener buttonListener;
 
     private final ArrayList<JButton> buttons;
+    private final ArrayList<Rectangle2D> shapes;
+
+    private final JPanel buttonPanel;
 
     //TODO: Find some way to make the buttons still grow in size, stay centered, and all have the same width.
 
-    public MenuScreen(){
+    public MenuScreen(ScreenController manager){
         super(null);
+        this.manager = manager;
         buttonListener = buildButtonListener();
         buttons = new ArrayList<>();
+        shapes = new ArrayList<>();
 
-        setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        //TODO: Set the layout to null and create a box layout button panel in the center
+        setLayout(null);
+        buttonPanel = new JPanel();
+
+        buttonPanel.setBackground(GUIConstants.TRANSPARENT);
+        buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
+
+        add(buttonPanel);
 
         // Add all buttons to arraylist for access and formatting
         buttons.add(buildMenuButton(GUIConstants.START_STRING,Color.GREEN));
         buttons.add(buildMenuButton(GUIConstants.SETTINGS_STRING,Color.BLUE));
+        buttons.add(buildMenuButton(GUIConstants.CONTROLS_STRING,Color.RED));
         buttons.add(buildMenuButton(GUIConstants.CREDITS_STRING,Color.ORANGE));
 
         // Add the main title to the menu screen
@@ -42,15 +61,36 @@ public class MenuScreen extends AbstractScreen implements ButtonHolder {
     }
 
     @Override
+    public void init(){
+        doLayout();
+    }
+
+    @Override
     public void render(Graphics2D g2){
 
     }
 
     @Override
+    public void doLayout(){
+        super.doLayout();
+        buttonPanel.setBounds(
+                0,
+                0,
+                this.getWidth(),
+                this.getHeight()
+        );
+    }
+
+    @Override
     public void onButtonPress(ActionEvent e){
         switch(e.getActionCommand()){
-            case GUIConstants.START_STRING -> System.out.println("Start pressed!");
+            case GUIConstants.START_STRING -> {
+                manager.unloadScreen(GUIConstants.MAIN_MENU);
+                manager.loadScreen(GUIConstants.GAME_SCREEN);
+                manager.setCurrentScreen(manager.get(GUIConstants.GAME_SCREEN));
+            }
             case GUIConstants.SETTINGS_STRING -> System.out.println("Settings pressed!");
+            case GUIConstants.CONTROLS_STRING -> System.out.println("Controls pressed!");
             case GUIConstants.CREDITS_STRING -> System.out.println("Credits pressed!");
         }
     }
@@ -96,20 +136,20 @@ public class MenuScreen extends AbstractScreen implements ButtonHolder {
 
     private void addButtons(){
         for(JButton b: buttons){
-            add(b);
-            add(Box.createVerticalGlue());
-            add(Box.createHorizontalGlue());
+            buttonPanel.add(b);
+            buttonPanel.add(Box.createVerticalGlue());
+            buttonPanel.add(Box.createHorizontalGlue());
         }
     }
 
     private void addMenuTitle(){
-        add(buildMenuLabel(GUIConstants.GAME_TITLE,Color.BLACK,GUIConstants.MAIN_TITLE_FONT));
-        add(Box.createVerticalGlue());
+        buttonPanel.add(buildMenuLabel(GUIConstants.GAME_TITLE,Color.BLACK,GUIConstants.MAIN_TITLE_FONT));
+        buttonPanel.add(Box.createVerticalGlue());
     }
 
     private void addCopyright(){
-        add(buildMenuLabel(GUIConstants.COPYRIGHT_STRING,Color.BLACK,GUIConstants.COPYRIGHT_FONT));
-        add(Box.createVerticalGlue());
+        buttonPanel.add(buildMenuLabel(GUIConstants.COPYRIGHT_STRING,Color.BLACK,GUIConstants.COPYRIGHT_FONT));
+        buttonPanel.add(Box.createVerticalGlue());
     }
 
 

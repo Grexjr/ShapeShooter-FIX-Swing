@@ -8,6 +8,9 @@ import java.awt.image.BufferedImage;
 
 public class GUIConstants {
 
+    // COLORS
+    public static final Color TRANSPARENT = new Color(0,0,0,0);
+
     //DEFAULTS
     public static final String DEFAULT_TEXT = "DEFAULT";
     public static final int DEFAULT_TEXT_SIZE = 12;
@@ -21,9 +24,12 @@ public class GUIConstants {
     // General Constants
     public static final Font STANDARD_FONT = new Font("Consolas",Font.PLAIN,DEFAULT_TEXT_SIZE);
 
+    // General Screen Constants
+    public static final String MAIN_MENU = "MainMenu";
+    public static final String GAME_SCREEN = "GameScreen";
 
     // GUI Applet Constants
-    public static final String GAME_TITLE = "Shape Shooter";
+    public static final String GAME_TITLE = "SHAPE SHOOTER";
     public static final String ICON_FILE = "";
 
     public static final Dimension SCREEN_MINIMUM = new Dimension(800,600);
@@ -32,6 +38,7 @@ public class GUIConstants {
     // Menu Screen Constants
     public static final String START_STRING = "START";
     public static final String SETTINGS_STRING = "SETTINGS";
+    public static final String CONTROLS_STRING = "CONTROLS";
     public static final String CREDITS_STRING = "CREDITS";
     public static final String COPYRIGHT_STRING = "\u00a9 2025 GrexGameStudios";
     public static final Border M_BUTTON_BORDER = new BevelBorder(0,Color.BLACK,Color.GRAY);
